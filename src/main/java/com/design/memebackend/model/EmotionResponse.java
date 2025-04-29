@@ -20,7 +20,7 @@ public class EmotionResponse {
     @Data
     @NoArgsConstructor
     public static class EmotionCategory {
-        private String clazz; // 由于class是Java关键字，使用clazz代替
+        private String clazz; // 使用clazz代替
         private double confidence;
         private Map<String, Double> probabilities;
     }

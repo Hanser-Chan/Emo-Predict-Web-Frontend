@@ -48,7 +48,7 @@ public class ImageServiceImpl implements ImageService {
         if (file.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "文件为空");
         }
-
+        // 生成随机ID
         String filename = UUID.randomUUID() + "." + FilenameUtils.getExtension(file.getOriginalFilename());
         String relativePath = "/images/original/" + filename;
         String fullPath = storageConfig.getStorageLocation() + relativePath;
@@ -63,7 +63,7 @@ public class ImageServiceImpl implements ImageService {
             Map<String, Map<String, Double>> modelProbabilities = new HashMap<>();
 
             response.getPredictions().forEach((category, emotion) -> {
-                // 注意：Flask API返回的是"class"字段，但Java中是关键字，所以使用clazz
+                // Flask API返回的是"class"字段，但Java中是关键字，所以使用clazz
                 modelPredictions.put(category, emotion.getClazz());
                 modelProbabilities.put(category, emotion.getProbabilities());
             });
